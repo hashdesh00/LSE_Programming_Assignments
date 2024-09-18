@@ -53,19 +53,19 @@ and the portfolio returns are calculated based on the stock prices for that day.
 ### 6. Performance Metrics:
 - **Annualized Sharpe Ratio**: This ratio measures the risk-adjusted return of the portfolio over the entire investment period. 
 It is calculated by annualizing the portfolio's daily returns, which are adjusted for volatility.
-
+```{latex}
   \[
   \text{Sharpe Ratio} = \frac{\sqrt{252} \times \text{Average Daily Return}}{\text{Standard Deviation of Daily Returns}}
   \]
-
+```
 - **Average Sum of Absolute Changes in Weights (AvsAchg)**: This metric measures the stability of portfolio weights.
 It calculates the average sum of absolute changes in the weights between rebalancing periods. 
 A lower AvsAchg indicates more stable weights, leading to lower transaction costs.
-  
+```{latex}  
   \[
   \text{AvsAchg} = \frac{1}{T} \sum_{t} \|w_{t+1} - w_t\|_1
   \]
-  
+```  
 ---
 
 ### 7. Sensitivity Analysis:
