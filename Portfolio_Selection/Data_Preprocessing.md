@@ -20,7 +20,7 @@ library(quantmod)
 
 symbols <- c("AAPL", "MSFT", "AMZN", "NVDA", "TSLA", "META", "UNH", "XOM", "JPM", "JNJ")
 getSymbols(symbols, src = "yahoo", from = "2013-01-01", to = "2023-01-01")
-
+```
 ## 2. Log Prices Calculation
 
 Log prices were calculated for each stock to stabilize variance and convert multiplicative relationships into additive ones. 
@@ -29,7 +29,7 @@ This transformation helps in better understanding the price dynamics over time.
 ### Code:
 ```r
 log_prices <- lapply(symbols, function(sym) log(Cl(get(sym))))
-
+```
 ## 4. Plotting Log Prices
 
 The log prices of the 10 selected stocks were plotted to visualize the trends over the past 10 years. 
@@ -45,7 +45,7 @@ log_prices_df <- do.call(merge, log_prices)
 # Plot the log prices
 plot.zoo(log_prices_df, main = "Log Prices of Selected Stocks (2013-2023)", ylab = "Log Prices", xlab = "Date")
 
-
+```
 ## 5. Covariance Matrix and Condition Number Calculation
 
 To assess the stability of the covariance matrix,
@@ -65,7 +65,7 @@ cov_matrix <- cov(log_returns)
 svd_result <- svd(cov_matrix)
 condition_number <- max(svd_result$d) / min(svd_result$d)
 condition_number
-
+```
 ## 6. Insights from the Data
 
 - Tesla (TSLA) exhibited exceptional growth over the 10-year period, especially post-2019.
