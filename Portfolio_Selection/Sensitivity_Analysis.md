@@ -24,15 +24,13 @@ and responsiveness (shorter `D`).
 ### 2. Performance Metrics
 Two key metrics were used to evaluate the portfolio strategy:
 - **Sharpe Ratio**: This measures the risk-adjusted return of the portfolio and is calculated as:
-  \[
-  \text{Sharpe Ratio} = \frac{\sqrt{252} \times \text{Average Daily Return}}{\text{Standard Deviation of Daily Returns}}
-  \]
-- **AvsAchg (Average Sum Absolute Changes in Weights)**: This metric measures the stability of portfolio weights,
-smaller AvsAchg indicates less frequent and smaller changes in the weights, 
-reducing transaction costs and signaling a more stable investment strategy:
-  \[
-  \text{AvsAchg} = \frac{1}{\text{Total number of periods}} \times \sum_{t} \| w_{t+1} - w_t \|_1
-  \]
+
+`Sharpe Ratio = (√252 × Average Daily Return) / (Standard Deviation of Daily Returns)`
+
+- **AvsAchg (Average Sum Absolute Changes in Weights)**: This metric measures the stability of portfolio weights:
+
+`AvsAchg = (1 / Total number of periods) × Σ | wt+1 - wt |`
+
 
 ### 3. Sensitivity Analysis Approach
 - The sensitivity analysis involved varying one parameter while holding the others constant. 
