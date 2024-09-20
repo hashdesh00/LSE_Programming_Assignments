@@ -21,7 +21,7 @@ The portfolio is initialized at time `t0`, with an equal allocation of weights t
 - The weights are optimized by solving a quadratic optimization problem with two key constraints:
   1. The sum of the portfolio weights must equal 1.
   2. The target return must be achieved using the optimized weights.
-
+- Here we utilise the two fund theorem from portfolio allocation theory. 
 ---
 
 ### 4. Covariance Matrix Regularization:
