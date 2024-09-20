@@ -1,4 +1,4 @@
-## Question 2: Constructing a Portfolio on a Rolling Window Basis
+## Constructing a Portfolio on a Rolling Window Basis
 
 ### Objective:
 The objective is to create a portfolio consisting of 10 selected stocks, adjusting the portfolio weights every `I` trading days using historical return data over the past `D` days. The strategy seeks to maximize risk-adjusted returns while maintaining stable portfolio weights and avoiding investment in any risk-free assets.
