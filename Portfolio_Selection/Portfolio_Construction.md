@@ -1,25 +1,19 @@
 ## Question 2: Constructing a Portfolio on a Rolling Window Basis
 
 ### Objective:
-The objective is to create a portfolio consisting of 10 selected stocks, 
-adjusting the portfolio weights every `I` trading days using historical return data over the past `D` days. 
-The strategy seeks to maximize risk-adjusted returns while maintaining stable portfolio weights and avoiding investment 
-in any risk-free assets.
+The objective is to create a portfolio consisting of 10 selected stocks, adjusting the portfolio weights every `I` trading days using historical return data over the past `D` days. The strategy seeks to maximize risk-adjusted returns while maintaining stable portfolio weights and avoiding investment in any risk-free assets.
 
 ---
 
 ### 1. Initial Setup:
-The portfolio is initialized at time `t0`, with an equal allocation of weights to all the selected stocks. 
-The portfolio weights are then adjusted every `I` trading days, using the stock returns over the previous `D` days.
-These weights are optimized to achieve a target portfolio return while minimizing portfolio variance.
+The portfolio is initialized at time `t0`, with an equal allocation of weights to all the selected stocks. The portfolio weights are then adjusted every `I` trading days using stock returns from the previous `D` days. These weights are optimized to achieve a target portfolio return while minimizing portfolio variance.
 
 ---
 
 ### 2. Calculating Rolling Mean Returns:
-- The rolling mean return for each stock is computed using the past `D` days of return data. 
-This provides a time-windowed estimate of the average return for each stock in the portfolio.
+- The rolling mean return for each stock is computed using the past `D` days of return data. This provides a time-windowed estimate of the average return for each stock in the portfolio.
 - The rolling mean returns serve as the basis for adjusting the portfolio weights at every rebalancing point.
-  
+
 ---
 
 ### 3. Weight Adjustments and Optimization:
@@ -28,85 +22,42 @@ This provides a time-windowed estimate of the average return for each stock in t
   1. The sum of the portfolio weights must equal 1.
   2. The target return must be achieved using the optimized weights.
 
-- The optimization problem is formulated as a quadratic programming problem, 
-where the objective is to minimize portfolio variance while satisfying the above constraints.
-
 ---
 
 ### 4. Covariance Matrix Regularization:
-- The covariance matrix of the asset returns over the past `D` days is used in the optimization process.
-A small shrinkage term (epsilon) is applied to the covariance matrix to ensure it remains positive semi-definite and stable.
-  
-- This regularization step ensures the optimization is not overly sensitive to noise in the covariance estimates, 
-especially during periods of market volatility.
+- The covariance matrix of the asset returns over the past `D` days is used in the optimization process. A small shrinkage term (epsilon) is applied to the covariance matrix to ensure it remains positive semi-definite and stable.
+- This regularization step ensures the optimization is not overly sensitive to noise in the covariance estimates, especially during periods of market volatility.
 
 ---
 
 ### 5. Execution of the Investment Strategy:
-- The portfolio is rebalanced every `I` trading days.
-For each day within the `I`-day period, the weights remain constant,
-and the portfolio returns are calculated based on the stock prices for that day.
+- The portfolio is rebalanced every `I` trading days. For each day within the `I`-day period, the weights remain constant, and the portfolio returns are calculated based on the stock prices for that day.
 - The portfolio return on each day is the weighted sum of the returns of the individual stocks.
 
 ---
 
 ### 6. Performance Metrics:
-- **Annualized Sharpe Ratio**: This ratio measures the risk-adjusted return of the portfolio over the entire investment period. 
-It is calculated by annualizing the portfolio's daily returns, which are adjusted for volatility.
-
-  \[
-  \text{Sharpe Ratio} = \frac{\sqrt{252} \times \text{Average Daily Return}}{\text{Standard Deviation of Daily Returns}}
-  \]
-
-- **Average Sum of Absolute Changes in Weights (AvsAchg)**: This metric measures the stability of portfolio weights.
-It calculates the average sum of absolute changes in the weights between rebalancing periods. 
-A lower AvsAchg indicates more stable weights, leading to lower transaction costs.
-
-  \[
-  \text{AvsAchg} = \frac{1}{T} \sum_{t} \|w_{t+1} - w_t\|_1
-  \]
+- **Annualized Sharpe Ratio**: This ratio measures the risk-adjusted return of the portfolio over the entire investment period. It is calculated by annualizing the portfolio's daily returns, adjusted for volatility.
   
----
-
-### 7. Sensitivity Analysis:
-To understand the effect of each parameter (`t0`, `D`, `I`, `x`),
-a sensitivity analysis was performed by systematically varying these parameters across defined ranges.
-The Sharpe ratio and AvsAchg were computed for each combination of parameter values.
-
-- **Parameter Ranges:**
-  - `t0`: Starting point of the investment period (e.g., 250 to 2250 days).
-  - `D`: Window length used to compute mean returns (e.g., 60 to 120 days).
-  - `I`: Rebalancing interval (e.g., 60 to 120 days).
-  - `x`: Target return scaling factor (e.g., 0.5 to 2.5).
-
-- **Key Insights:**
-  - Longer windows for calculating the rolling mean returns (higher `D`) tended to stabilize the portfolio,
-but reduced responsiveness to market conditions.
-  - The parameter `I` (rebalancing interval) had little impact on the Sharpe ratio but significantly affected the AvsAchg. 
-More frequent rebalancing led to higher transaction costs.
-  - The parameter `x` (target return scaling) did not significantly affect the Sharpe ratio within the tested range,
-but impacted the portfolio weights, especially for higher values.
+- **Average Sum of Absolute Changes in Weights (AvsAchg)**: This metric measures the stability of portfolio weights. It calculates the average sum of absolute changes in the weights between rebalancing periods. A lower AvsAchg indicates more stable weights, leading to lower transaction costs.
 
 ---
 
-### 8. Optimal Parameter Selection:
-Through the sensitivity analysis, the optimal parameter set that provided the best balance between a high Sharpe ratio and a low AvsAchg,
-was identified as:
+### 7. Code Reference:
+The complete code to implement the rolling window portfolio strategy, including the calculation of the Sharpe ratio and AvsAchg, can be found in the following code file:
+- [Rolling Window Portfolio Strategy Code](./code/portfolio_strategy.R)
 
-- `t0 = 500`
-- `D = 60`
-- `I = 70`
-- `x = 1.2`
-
-This combination resulted in an annualized Sharpe ratio of **0.74** and an AvsAchg of **9.9789**,
-suggesting a favorable trade-off between risk-adjusted returns and portfolio stability.
+This function allows for adjusting the parameters `t0`, `D`, `I`, and `x` to explore how different values affect the portfolio's performance.
 
 ---
 
-### 9. Conclusion:
-The rolling window portfolio construction strategy effectively adjusts weights based on historical return data,
-allowing the portfolio to adapt to changing market conditions. 
-By fine-tuning the parameters, an optimal strategy was identified that maximizes returns while minimizing portfolio rebalancing costs. 
-This approach highlights the importance of balancing stability and responsiveness in portfolio management.
+### 8. Conclusion:
+The rolling window portfolio construction strategy effectively adjusts weights based on historical return data, allowing the portfolio to adapt to changing market conditions. By optimizing the parameters, the strategy balances risk-adjusted returns with portfolio stability. This framework is essential for dynamic portfolio management in volatile market environments.
 
 ---
+
+### Next Steps:
+For further analysis and parameter tuning, see **Question 3** on sensitivity analysis, where different parameter combinations are systematically explored to optimize portfolio performance.
+
+---
+
