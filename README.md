@@ -15,7 +15,7 @@ Each project emphasizes a combination of theoretical understanding and practical
 ## Table of Contents
 - [Brief Overview](#brief-overview)
 - [Projects](#projects)
-  - [Portfolio Selection](./Portfolio_Selection.md)
+  - [Portfolio Selection](./Portfolio_Selection)
   - [Multiple Linear Regression](#multiple-linear-regression)
   - [Risk and Financial Modelling](#risk-and-financial-modelling)
   - [Submarine Network Algorithms](#submarine-network-algorithms)
