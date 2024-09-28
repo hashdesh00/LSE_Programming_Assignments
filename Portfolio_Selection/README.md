@@ -37,7 +37,7 @@ The goal was to build an optimized portfolio using mean-variance analysis, compu
   - Selection of the best-performing parameter set.
 
 ## Key Results
-- The best-performing portfolio achieved a Sharpe ratio of 0.79.
+- The best-performing portfolio achieved a Sharpe ratio of 0.74.
 - The optimal balance between Sharpe ratio and AvsAchg was achieved by using parameter set `X`.
 
 ## How to Run the Code
